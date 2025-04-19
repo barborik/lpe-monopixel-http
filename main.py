@@ -18,7 +18,7 @@ def camera_status():
     pass
 
 
-@app.route("/last/", methods=["GET", "POST"])
+@app.route("/bitmap/", methods=["GET", "POST"])
 def last_photo():
     if request.method == "GET":
         data = pixels2bmp(pixels)
