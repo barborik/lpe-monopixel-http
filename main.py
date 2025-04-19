@@ -8,17 +8,17 @@ app = Flask(__name__)
 pixels = [[0] * 40 for _ in range(40)]
 
 
-@app.route("/lpe/", methods=["GET"])
+@app.route("/", methods=["GET"])
 def home():
     return "TEST"
 
 
-@app.route("/lpe/status/", methods=["GET", "POST"])
+@app.route("/status/", methods=["GET", "POST"])
 def camera_status():
     pass
 
 
-@app.route("/lpe/last/", methods=["GET", "POST"])
+@app.route("/last/", methods=["GET", "POST"])
 def last_photo():
     if request.method == "GET":
         data = pixels2bmp(pixels)
