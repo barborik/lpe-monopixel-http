@@ -14,12 +14,12 @@ def home():
 
 
 @app.route("/status/", methods=["GET", "POST"])
-def camera_status():
+def status():
     pass
 
 
 @app.route("/bitmap/", methods=["GET", "POST"])
-def last_photo():
+def bitmap():
     if request.method == "GET":
         data = pixels2bmp(pixels)
         response = make_response(data)
@@ -30,6 +30,8 @@ def last_photo():
     if request.method == "POST":
         data = request.data.decode("utf-8")
         print(data)
+
+        return ""
 
 
 def pixels2bmp(pixels):
