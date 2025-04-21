@@ -30,6 +30,8 @@ def bitmap():
     if request.method == "POST":
         data = request.data.decode("utf-8")
 
+        print(data)
+
         for i in range(len(pixels)):
             for j in range(len(pixels[0])):
                 pixels[i][j] = int(data)
