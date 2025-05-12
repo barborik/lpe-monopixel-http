@@ -34,7 +34,7 @@ def bitmap():
 
         split = data.split(" ")
         filtered = [s for s in split if s.isdigit()]
-        values = [int(s) for s in split]
+        values = [int(s) for s in filtered]
 
         row = values.pop(0)
         pixels[row] = values
