@@ -20,6 +20,8 @@ def status():
 
 @app.route("/bitmap/", methods=["GET", "POST"])
 def bitmap():
+    global pixels
+
     if request.method == "GET":
         data = pixels2bmp(pixels)
         response = make_response(data)
@@ -49,7 +51,7 @@ def pixels2bmp(pixels):
     width = 40
     height = 40
 
-    image = Image.frombytes('L', (width, height), bytes(pixels.copy()))
+    image = Image.frombytes('L', (width, height), bytes(pixels))
 
     bmp_buffer = io.BytesIO()
     image.save(bmp_buffer, format='BMP')
