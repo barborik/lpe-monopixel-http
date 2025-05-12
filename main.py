@@ -49,8 +49,8 @@ def bitmap():
 
 
 def pixels2bmp(pixels):
-    width = len(pixels[0])
-    height = len(pixels)
+    width = 40
+    height = 40
 
     image = Image.frombytes('L', (width, height), bytes(pixels))
 
