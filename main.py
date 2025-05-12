@@ -5,7 +5,7 @@ from flask import Flask, request, make_response
 
 app = Flask(__name__)
 
-pixels = [255] * 40 * 40
+pixels = [0] * 40 * 40
 
 
 @app.route("/", methods=["GET"])
@@ -21,7 +21,6 @@ def status():
 @app.route("/bitmap/", methods=["GET", "POST"])
 def bitmap():
     if request.method == "GET":
-        print(pixels)
         data = pixels2bmp(pixels)
         response = make_response(data)
         response.headers.set("Content-Type", "image/bmp")
@@ -50,7 +49,7 @@ def pixels2bmp(pixels):
     width = 40
     height = 40
 
-    image = Image.frombytes('L', (width, height), bytes(pixels))
+    image = Image.frombytes('L', (width, height), bytes(pixels.copy()))
 
     bmp_buffer = io.BytesIO()
     image.save(bmp_buffer, format='BMP')
