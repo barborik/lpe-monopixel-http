@@ -30,14 +30,17 @@ def bitmap():
     if request.method == "POST":
         data = request.data.decode("utf-8")
 
-        print(data)
-
         split = data.split(" ")
         filtered = [s for s in split if s.isdigit()]
         values = [int(s) for s in filtered]
 
         row = values.pop(0)
         pixels[row] = values
+
+        print("============")
+        print(row)
+        print(values)
+        print("============")
 
         return ""
 
