@@ -26,7 +26,7 @@ def bitmap():
     global pixels
 
     if request.method == "GET":
-        data = pixels2bmp(pixels)
+        data = pixels2bmp()
         response = make_response(data)
         response.headers.set("Content-Type", "image/bmp")
 
@@ -50,7 +50,7 @@ def bitmap():
         return ""
 
 
-def pixels2bmp(pixels):
+def pixels2bmp():
     width = HORIZONTAL_PIXELS
     height = VERTICAL_PIXELS
 
