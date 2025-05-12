@@ -33,6 +33,7 @@ def bitmap():
         print(data)
 
         split = data.split(" ")
+        filtered = [s for s in split if s.isdigit()]
         values = [int(s) for s in split]
 
         row = values.pop(0)
