@@ -5,7 +5,7 @@ from flask import Flask, request, make_response
 
 app = Flask(__name__)
 
-pixels = [[0] * 40 for _ in range(40)]
+pixels = [0] * 40 * 40
 
 
 @app.route("/", methods=["GET"])
@@ -36,7 +36,9 @@ def bitmap():
         values = [int(s) for s in filtered]
 
         row = values.pop(0)
-        pixels[row] = values
+        for i in range(row * 40, (row + 1) * 40):
+            pixels[i] = values[i % 40]
+        #pixels[row] = values
 
         print("============")
         print(row)
@@ -49,13 +51,8 @@ def bitmap():
 def pixels2bmp(pixels):
     width = len(pixels[0])
     height = len(pixels)
-    flat = []
 
-    for row in pixels:
-        for pixel in row:
-            flat.append(pixel)
-
-    image = Image.frombytes('L', (width, height), bytes(flat))
+    image = Image.frombytes('L', (width, height), bytes(pixels))
 
     bmp_buffer = io.BytesIO()
     image.save(bmp_buffer, format='BMP')
