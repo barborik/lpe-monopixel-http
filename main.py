@@ -26,7 +26,7 @@ def bitmap():
     global pixels
 
     if request.method == "GET":
-        data = pixels2bmp()
+        data = pixels2bmp(pixels)
         response = make_response(data)
         response.headers.set("Content-Type", "image/bmp")
 
@@ -39,8 +39,8 @@ def bitmap():
         values = [int(s) for s in filtered]
 
         row = values.pop(0)
-        for i in range(row * HORIZONTAL_PIXELS, (row + 1) * HORIZONTAL_PIXELS):
-            pixels[i] = values[i % HORIZONTAL_PIXELS]
+        for i in range(HORIZONTAL_PIXELS):
+            pixels[row * HORIZONTAL_PIXELS + i] = values[i]
 
         print("============")
         print(row)
@@ -50,7 +50,7 @@ def bitmap():
         return ""
 
 
-def pixels2bmp():
+def pixels2bmp(pixels):
     width = HORIZONTAL_PIXELS
     height = VERTICAL_PIXELS
 
