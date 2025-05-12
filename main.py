@@ -21,6 +21,8 @@ def status():
 
 @app.route("/bitmap/", methods=["GET", "POST"])
 def bitmap():
+    global bitmap
+
     if request.method == "GET":
         response = make_response(bitmap)
         response.headers.set("Content-Type", "image/bmp")
