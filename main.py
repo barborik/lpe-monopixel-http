@@ -5,7 +5,7 @@ from flask import Flask, request, make_response
 
 app = Flask(__name__)
 
-pixels = [0] * 40 * 40
+pixels = [255] * 40 * 40
 
 
 @app.route("/", methods=["GET"])
@@ -31,14 +31,12 @@ def bitmap():
     if request.method == "POST":
         data = request.data.decode("utf-8")
 
-        split = data.split(" ")
-        filtered = [s for s in split if s.isdigit()]
+        filtered = [s for s in data.split(" ") if s.isdigit()]
         values = [int(s) for s in filtered]
 
         row = values.pop(0)
         for i in range(row * 40, (row + 1) * 40):
             pixels[i] = values[i % 40]
-        #pixels[row] = values
 
         print("============")
         print(row)
