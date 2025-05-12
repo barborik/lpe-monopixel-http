@@ -32,9 +32,11 @@ def bitmap():
 
         print(data)
 
-        for i in range(len(pixels)):
-            for j in range(len(pixels[0])):
-                pixels[i][j] = int(data)
+        split = data.split(" ")
+        values = [int(s) for s in split]
+
+        row = values.pop(0)
+        pixels[row] = values
 
         return ""
 
