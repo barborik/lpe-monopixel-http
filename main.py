@@ -3,9 +3,12 @@ import io
 from PIL import Image
 from flask import Flask, request, make_response
 
+HORIZONTAL_PIXELS = 80
+VERTICAL_PIXELS = 60
+
 app = Flask(__name__)
 
-pixels = [0] * 40 * 40
+pixels = [0] * HORIZONTAL_PIXELS * VERTICAL_PIXELS
 
 
 @app.route("/", methods=["GET"])
@@ -36,8 +39,8 @@ def bitmap():
         values = [int(s) for s in filtered]
 
         row = values.pop(0)
-        for i in range(row * 40, (row + 1) * 40):
-            pixels[i] = values[i % 40]
+        for i in range(row * HORIZONTAL_PIXELS, (row + 1) * HORIZONTAL_PIXELS):
+            pixels[i] = values[i % HORIZONTAL_PIXELS]
 
         print("============")
         print(row)
@@ -48,8 +51,8 @@ def bitmap():
 
 
 def pixels2bmp(pixels):
-    width = 40
-    height = 40
+    width = HORIZONTAL_PIXELS
+    height = VERTICAL_PIXELS
 
     image = Image.frombytes('L', (width, height), bytes(pixels))
 
