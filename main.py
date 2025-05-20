@@ -3,8 +3,8 @@ import io
 from PIL import Image
 from flask import Flask, request, make_response
 
-HORIZONTAL_PIXELS = 160
-VERTICAL_PIXELS = 120
+HORIZONTAL_PIXELS = 80
+VERTICAL_PIXELS = 60
 
 app = Flask(__name__)
 
