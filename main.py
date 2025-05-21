@@ -18,14 +18,14 @@ shoot = False
 @app.route("/", methods=["GET"])
 def home():
     with open("index.html", "r") as file:
-        lines = file.readlines()
+        content = file.read()
 
     if last_status != None and time() - last_status > 5:
         camera_status = "PŘIPRAVENA FOTIT"
     else:
         camera_status = "ČEKÁ NA PŘIPOJENÍ NEBO PRÁVĚ FOTÍ"
 
-    return lines.format(camera_status)
+    return content.format(camera_status)
 
 
 @app.route("/status/", methods=["POST"])
