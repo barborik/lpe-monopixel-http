@@ -31,6 +31,7 @@ def home():
 @app.route("/status/", methods=["POST"])
 def status():
     last_status = time()
+    return ""
 
 
 @app.route("/shoot/", methods=["GET", "POST"])
