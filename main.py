@@ -2,7 +2,7 @@ import io
 from time import time
 
 from PIL import Image
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, redirect, url_for
 
 HORIZONTAL_PIXELS = 80
 VERTICAL_PIXELS = 60
@@ -50,7 +50,7 @@ def shoot():
         else:
             shoot = True
 
-        return home()
+        return redirect(url_for("home"))
 
 
 @app.route("/bitmap/", methods=["GET", "POST"])
