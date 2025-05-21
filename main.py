@@ -53,8 +53,6 @@ def shoot():
 @app.route("/bitmap/", methods=["GET", "POST"])
 def bitmap():
     if request.method == "GET":
-        print(pixels)
-
         data = pixels2bmp(pixels)
         response = make_response(data)
         response.headers.set("Content-Type", "image/bmp")
