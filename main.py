@@ -49,6 +49,8 @@ def shoot():
         else:
             shoot = True
 
+        return home()
+
 
 @app.route("/bitmap/", methods=["GET", "POST"])
 def bitmap():
