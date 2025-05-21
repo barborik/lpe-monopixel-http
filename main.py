@@ -38,7 +38,7 @@ def status():
 
 
 @app.route("/shoot/", methods=["GET", "POST"])
-def shoot():
+def capture():
     global shoot
     global HORIZONTAL_PIXELS
     global VERTICAL_PIXELS
