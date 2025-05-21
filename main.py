@@ -28,13 +28,13 @@ def home():
     return lines.format(camera_status)
 
 
-@app.route("/camera-status/", methods=["POST"])
+@app.route("/status/", methods=["POST"])
 def status():
     last_status = time()
 
 
 @app.route("/shoot/", methods=["GET", "POST"])
-def status():
+def shoot():
     if request.method == "GET":
         if shoot:
             return "Y"
