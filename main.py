@@ -20,6 +20,10 @@ def home():
     with open("index.html", "r") as file:
         content = file.read()
 
+    print(last_status)
+    print(time())
+    print("====")
+
     if last_status != None and time() - last_status > 5:
         camera_status = "PŘIPRAVENA FOTIT"
     else:
