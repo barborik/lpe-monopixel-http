@@ -40,6 +40,7 @@ def status():
 @app.route("/shoot/", methods=["GET", "POST"])
 def capture():
     global shoot
+    global pixels
     global HORIZONTAL_PIXELS
     global VERTICAL_PIXELS
     global SAMPLING_FREQ
@@ -57,9 +58,10 @@ def capture():
         if data == "OK":
             shoot = False
         else:
-            HORIZONTAL_PIXELS = request.form["HORIZONTAL_PIXELS"]
-            VERTICAL_PIXELS = request.form["VERTICAL_PIXELS"]
-            SAMPLING_FREQ = request.form["SAMPLING_FREQ"]
+            HORIZONTAL_PIXELS = int(request.form["HORIZONTAL_PIXELS"])
+            VERTICAL_PIXELS = int(request.form["VERTICAL_PIXELS"])
+            SAMPLING_FREQ = int(request.form["SAMPLING_FREQ"])
+            pixels = [0] * HORIZONTAL_PIXELS * VERTICAL_PIXELS
             shoot = True
 
         return redirect(url_for("home"))
