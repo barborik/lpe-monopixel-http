@@ -1,4 +1,5 @@
 import io
+from time import time
 
 from PIL import Image
 from flask import Flask, request, make_response
@@ -10,15 +11,43 @@ app = Flask(__name__)
 
 pixels = [0] * HORIZONTAL_PIXELS * VERTICAL_PIXELS
 
+last_status = None
+shoot = False
+
 
 @app.route("/", methods=["GET"])
 def home():
-    return "TEST"
+    with open("index.html", "r") as file:
+        lines = file.readlines()
+
+    if time() - last_status > 5:
+        camera_status = "PŘIPRAVENA FOTIT"
+    else:
+        camera_status = "ČEKÁ NA PŘIPOJENÍ NEBO PRÁVĚ FOTÍ"
+
+    return lines.format(camera_status)
 
 
-@app.route("/status/", methods=["GET", "POST"])
+@app.route("/status/", methods=["POST"])
 def status():
-    pass
+    last_status = time()
+
+
+@app.route("/shoot/", methods=["GET", "POST"])
+def status():
+    if request.method == "GET":
+        if shoot:
+            return "Y"
+        else:
+            return "N"
+
+    if request.method == "POST":
+        data = request.data.decode("utf-8")
+
+        if data == "OK":
+            shoot = False
+        else:
+            shoot = True
 
 
 @app.route("/bitmap/", methods=["GET", "POST"])
