@@ -45,6 +45,7 @@ def shoot():
     global SAMPLING_FREQ
 
     if request.method == "GET":
+        print(f"SHOOT: {shoot}")
         if shoot:
             return f"Y\n{HORIZONTAL_PIXELS}\n{VERTICAL_PIXELS}\n{SAMPLING_FREQ}"
         else:
