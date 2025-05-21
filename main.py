@@ -28,7 +28,7 @@ def home():
     return lines.format(camera_status)
 
 
-@app.route("/status/", methods=["POST"])
+@app.route("/camera-status/", methods=["POST"])
 def status():
     last_status = time()
 
