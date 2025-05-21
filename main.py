@@ -20,10 +20,6 @@ def home():
     with open("index.html", "r") as file:
         content = file.read()
 
-    print(last_status)
-    print(time())
-    print("====")
-
     if last_status != None and time() - last_status > 5:
         camera_status = "PŘIPRAVENA FOTIT"
     else:
@@ -34,6 +30,7 @@ def home():
 
 @app.route("/status/", methods=["POST"])
 def status():
+    global last_status
     last_status = time()
     return ""
 
