@@ -83,6 +83,11 @@ def bitmap():
         for i in range(HORIZONTAL_PIXELS):
             pixels[row * HORIZONTAL_PIXELS + i] = values[i]
 
+        print("============")
+        print(row)
+        print(values)
+        print("============")
+
         return ""
 
 
