@@ -24,7 +24,7 @@ def home():
     print(time())
     print("====")
 
-    if last_status != None and time() - last_status > 5:
+    if last_status != None and time() - last_status < 5:
         camera_status = "PŘIPRAVENA FOTIT"
     else:
         camera_status = "ČEKÁ NA PŘIPOJENÍ NEBO PRÁVĚ FOTÍ"
