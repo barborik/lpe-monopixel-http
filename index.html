@@ -14,6 +14,12 @@
     <span>Status kamery: {}</span>
     <br>
     <form action="/shoot/" method="post">
+        <label for="HORIZONTAL_PIXELS">Šířka (1 - 160):</label>
+        <input type="number" id="HORIZONTAL_PIXELS" name="HORIZONTAL_PIXELS" min="1" max="160" value="80" />
+        <label for="VERTICAL_PIXELS">Výška (1 - 120):</label>
+        <input type="number" id="VERTICAL_PIXELS" name="VERTICAL_PIXELS" min="1" max="120" value="60" />
+        <label for="SAMPLING_FREQ">Vzorkovací frekvence (1 - 1000):</label>
+        <input type="number" id="SAMPLING_FREQ" name="SAMPLING_FREQ" min="1" max="1000" value="50" />
         <input type="submit" value="Fotit">
     </form>
 </body>

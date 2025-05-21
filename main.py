@@ -6,6 +6,7 @@ from flask import Flask, request, make_response, redirect, url_for
 
 HORIZONTAL_PIXELS = 80
 VERTICAL_PIXELS = 60
+SAMPLING_FREQ = 50
 
 app = Flask(__name__)
 
@@ -31,7 +32,7 @@ def home():
 @app.route("/status/", methods=["POST"])
 def status():
     global last_status
-    
+
     last_status = time()
     return ""
 
@@ -39,12 +40,15 @@ def status():
 @app.route("/shoot/", methods=["GET", "POST"])
 def shoot():
     global shoot
+    global HORIZONTAL_PIXELS
+    global VERTICAL_PIXELS
+    global SAMPLING_FREQ
 
     if request.method == "GET":
         if shoot:
-            return "Y"
+            return f"Y\n{HORIZONTAL_PIXELS}\n{VERTICAL_PIXELS}\n{SAMPLING_FREQ}"
         else:
-            return "N"
+            return "N\n0\n0\n0"
 
     if request.method == "POST":
         data = request.data.decode("utf-8")
@@ -52,6 +56,9 @@ def shoot():
         if data == "OK":
             shoot = False
         else:
+            HORIZONTAL_PIXELS = request.form["HORIZONTAL_PIXELS"]
+            VERTICAL_PIXELS = request.form["VERTICAL_PIXELS"]
+            SAMPLING_FREQ = request.form["SAMPLING_FREQ"]
             shoot = True
 
         return redirect(url_for("home"))
@@ -75,11 +82,6 @@ def bitmap():
         row = values.pop(0)
         for i in range(HORIZONTAL_PIXELS):
             pixels[row * HORIZONTAL_PIXELS + i] = values[i]
-
-        print("============")
-        print(row)
-        print(values)
-        print("============")
 
         return ""
 
